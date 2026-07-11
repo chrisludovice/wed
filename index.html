@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Batanes Wedding — A Story of Faith, Intention & Adventure</title>
+<meta name="description" content="A story of faith, intention, adventure, and the most beautiful place we could ever say 'I do.' — Our Batanes Wedding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   DESIGN TOKENS
+   Palette named after the physical materials of Batanes itself —
+   the ivory of limestone, the taupe of cogon-thatched roofs,
+   the muted olive of the rolling hills, the stone gray of the
+   Ivatan houses, the hazy blue the sky turns before the wind
+   picks up.
+   ============================================================ */
+:root{
+  --ivory:      #F7F2E9;
+  --sand:       #EAE0CC;
+  --stone:      #B9AFA0;
+  --taupe:      #8C7B65;
+  --bark:       #4A3F32;
+  --ink:        #2B2620;
+  --olive:      #6E7059;
+  --olive-deep: #4F5140;
+  --sky:        #7D93A0;
+  --sky-deep:   #4E6270;
+  --white:      #FFFDF9;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Jost', 'Helvetica Neue', Arial, sans-serif;
+
+  --ease: cubic-bezier(.22,.68,0,1);
+  --container: 1180px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+/* ============================================================
+   MEDIA PROTECTION — deters casual right-click / drag saving
+   of photos and videos. Not real DRM (browsers can always be
+   inspected), but stops the common accidental "save image as".
+   ============================================================ */
+img, video, .photo, .week-video{
+  -webkit-user-select:none; user-select:none;
+  -webkit-user-drag:none;
+  -webkit-touch-callout:none;
+}
+video::-webkit-media-controls-enclosure{ overflow:hidden; }
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer; background:none; border:none; color:inherit;}
+::selection{background:var(--bark); color:var(--ivory);}
+:focus-visible{outline:2px solid var(--sky-deep); outline-offset:3px;}
+
+h1,h2,h3,h4{font-family:var(--serif); font-weight:400; color:var(--bark); letter-spacing:.005em;}
+.eyebrow{
+  font-family:var(--sans); text-transform:uppercase; letter-spacing:.22em;
+  font-size:.7rem; color:var(--taupe); font-weight:500;
+}
+.container{max-width:var(--container); margin:0 auto; padding:0 32px;}
+@media (max-width:640px){ .container{padding:0 22px;} }
+
+/* Reveal-on-scroll */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity 1s var(--ease), transform 1s var(--ease);}
+.reveal.in{opacity:1; transform:translateY(0);}
+.reveal-delay-1{transition-delay:.12s;}
+.reveal-delay-2{transition-delay:.24s;}
+.reveal-delay-3{transition-delay:.36s;}
+
+/* ============================================================
+   SIGNATURE MOTIF — the horizon line.
+   A single hand-drawn contour that traces the shape of Batanes'
+   rolling hills. It runs faintly behind the whole page and
+   thickens into the scroll-progress indicator — a quiet reminder
+   that the island's own silhouette is the real decoration.
+   ============================================================ */
+.horizon-progress{
+  position:fixed; top:0; left:0; width:100%; height:3px; z-index:1000;
+  background:transparent;
+}
+.horizon-progress svg{width:100%; height:100%; display:block;}
+.horizon-progress path{
+  fill:none; stroke:var(--taupe); stroke-width:3; stroke-linecap:round;
+  vector-effect:non-scaling-stroke;
+}
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+#loader{
+  position:fixed; inset:0; background:var(--bark); z-index:9999;
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px;
+  transition:opacity 1.1s var(--ease), visibility 1.1s;
+}
+#loader.hide{opacity:0; visibility:hidden; pointer-events:none;}
+#loader .mark{font-family:var(--serif); font-style:italic; font-size:1.4rem; color:var(--ivory); letter-spacing:.04em;}
+#loader .line{width:120px; height:1px; background:rgba(247,242,233,.25); position:relative; overflow:hidden;}
+#loader .line::after{content:''; position:absolute; left:-40%; top:0; bottom:0; width:40%; background:var(--stone); animation:loaderSweep 1.3s ease-in-out infinite;}
+@keyframes loaderSweep{0%{left:-40%;}100%{left:100%;}}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+#nav{
+  position:fixed; top:0; left:0; width:100%; z-index:900;
+  padding:18px 0; transition:padding .5s var(--ease), box-shadow .5s var(--ease);
+  background:var(--ivory);
+  box-shadow:0 1px 0 rgba(74,63,50,.08);
+}
+#nav .container{display:flex; align-items:center; justify-content:space-between;}
+#nav.scrolled{
+  padding:12px 0; box-shadow:0 1px 0 rgba(74,63,50,.14), 0 8px 24px rgba(74,63,50,.06);
+}
+.brand{font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--bark); letter-spacing:.02em;}
+.nav-links{display:none; gap:26px; list-style:none; overflow:hidden;}
+.nav-links a{
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--bark);
+  padding-bottom:4px; border-bottom:1px solid transparent; transition:border-color .3s;
+  white-space:nowrap;
+}
+.nav-links a:hover{border-color:currentColor;}
+.nav-toggle{display:none; color:var(--bark); font-size:1.5rem;}
+@media (max-width:980px){
+  .nav-links{
+    display:flex;
+    position:fixed; top:0; right:0; height:100vh; width:min(320px,80vw);
+    background:var(--white); flex-direction:column; justify-content:center; align-items:flex-start;
+    padding:40px; gap:20px; transform:translateX(100%); transition:transform .5s var(--ease);
+    box-shadow:-10px 0 40px rgba(0,0,0,.08);
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-links a{color:var(--bark) !important;}
+  .nav-toggle{display:block;}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{
+  position:relative; height:100svh; min-height:560px; display:flex; align-items:flex-end;
+  overflow:hidden;
+  background:var(--stone);
+}
+#hero .bg{
+  position:absolute; inset:0; z-index:0;
+  background:url('https://raw.githubusercontent.com/chrisludovice/wed/refs/heads/main/hero-banner.jpg');
+  background-size:cover;
+  background-position:center 38%;
+  filter:sepia(.22) saturate(1.18) brightness(1.06) contrast(.94);
+}
+#hero .hero-overlay{
+  position:absolute; inset:0; z-index:1;
+  background:
+    linear-gradient(180deg, rgba(74,63,50,.06) 0%, rgba(74,63,50,.15) 45%, rgba(58,48,36,.55) 100%),
+    linear-gradient(90deg, rgba(74,63,50,.28) 0%, transparent 30%, transparent 70%, rgba(74,63,50,.28) 100%);
+}
+#hero .hills{
+  position:absolute; inset:0; opacity:.55; mix-blend-mode:overlay;
+}
+#hero .hero-inner{position:relative; z-index:2; width:100%; padding-bottom:9vh;}
+#hero .eyebrow{color:var(--ivory); opacity:.85;}
+#hero h1{
+  color:var(--white); font-size:clamp(2.6rem,7vw,5.6rem); font-weight:400; margin:14px 0 20px;
+  max-width:14ch; line-height:1.02;
+}
+#hero p{color:rgba(255,253,249,.86); max-width:44ch; font-size:1.05rem; font-weight:300;}
+#hero .cta{
+  display:inline-flex; align-items:center; gap:10px; margin-top:34px;
+  color:var(--white); font-size:.75rem; text-transform:uppercase; letter-spacing:.18em;
+  padding-bottom:6px; border-bottom:1px solid rgba(255,253,249,.5);
+}
+#hero .cta .arrow{transition:transform .4s var(--ease);}
+#hero .cta:hover .arrow{transform:translateY(5px);}
+#hero .scroll-cue{
+  position:absolute; bottom:26px; right:32px; z-index:2; color:var(--white); opacity:.75;
+  font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; writing-mode:vertical-rl;
+  display:flex; align-items:center; gap:10px;
+}
+#hero .scroll-cue::after{content:''; width:1px; height:48px; background:currentColor; opacity:.6;}
+@media (max-width:640px){ #hero .scroll-cue{display:none;} }
+
+/* ============================================================
+   SECTION SCAFFOLDING
+   ============================================================ */
+section{position:relative; padding:120px 0;}
+@media (max-width:640px){ section{padding:80px 0;} }
+.section-head{max-width:640px; margin-bottom:64px;}
+.section-head h2{font-size:clamp(2rem,4vw,3rem); margin-top:14px;}
+.section-head p.lede{margin-top:18px; font-size:1.05rem; color:var(--taupe); max-width:56ch;}
+.divider{
+  width:100%; height:70px; margin-top:-1px;
+}
+.tone-ivory{background:var(--ivory);}
+.tone-sand{background:var(--sand);}
+.tone-bark{background:var(--bark); color:var(--ivory);}
+.tone-bark h2, .tone-bark h3, .tone-bark h4{color:var(--ivory);}
+.tone-white{background:var(--white);}
+
+/* photo placeholder blocks — since real photography isn't available yet,
+   each block is a labeled tonal field the couple can drop an image into */
+.photo{
+  position:relative; overflow:hidden; border-radius:2px;
+  display:flex; align-items:flex-end; padding:18px;
+  color:rgba(255,253,249,.92); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+  min-height:180px;
+}
+.photo::before{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.35), transparent 55%);}
+.photo.no-caption::before{content:none;}
+.photo span{position:relative; z-index:1;}
+.p1{background:linear-gradient(135deg,#8C9081,#4E6270);}
+.p2{background:linear-gradient(135deg,#B9AFA0,#6E7059);}
+.p3{background:linear-gradient(135deg,#4A3F32,#8C7B65);}
+.p4{background:linear-gradient(135deg,#7D93A0,#EAE0CC);}
+.p5{background:linear-gradient(135deg,#6E7059,#B9AFA0);}
+.p6{background:linear-gradient(135deg,#4E6270,#8C9081);}
+.p7{background:linear-gradient(135deg,#8C7B65,#4A3F32);}
+.p8{background:linear-gradient(135deg,#EAE0CC,#7D93A0);}
+
+/* ============================================================
+   OUR STORY — two-column: text + proposal video
+   ============================================================ */
+.story-two-col{
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; margin-top:10px;
+}
+@media (max-width:860px){ .story-two-col{grid-template-columns:1fr; gap:36px;} }
+.story-video{
+  position:relative; width:100%; aspect-ratio:16/9; background:var(--bark);
+  border:1px solid var(--stone); overflow:hidden; box-shadow:0 20px 50px rgba(43,38,32,.14);
+}
+.story-video iframe, .story-video video{position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:cover;}
+
+/* ============================================================
+   WHY BATANES — feature grid + map
+   ============================================================ */
+.feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--stone);}
+@media (max-width:860px){ .feature-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .feature-grid{grid-template-columns:1fr;} }
+.feature{background:var(--ivory); padding:34px 28px; min-height:190px;}
+.feature .num{font-family:var(--serif); font-style:italic; color:var(--stone); font-size:1.6rem;}
+.feature h4{margin:12px 0 8px; font-size:1.1rem;}
+.feature p{font-size:.88rem; color:var(--taupe);}
+
+.map-wrap{
+  margin-top:70px; border:1px solid var(--stone); background:var(--white); padding:44px;
+}
+.map-svg{width:100%; height:auto; display:block;}
+.map-legend{display:flex; flex-wrap:wrap; gap:26px; margin-top:26px;}
+.map-legend .pin{display:flex; align-items:center; gap:10px; font-size:.8rem; color:var(--bark);}
+.map-legend .dot{width:9px; height:9px; border-radius:50%; background:var(--sky-deep); flex:none;}
+
+/* ============================================================
+   VISION
+   ============================================================ */
+.vision-accents{
+  display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--stone); margin-top:50px;
+}
+@media (max-width:760px){ .vision-accents{grid-template-columns:1fr;} }
+.vision-accent{background:var(--ivory); padding:32px 34px;}
+.vision-accent p:not(.eyebrow){font-size:.92rem; color:var(--ink); opacity:.82; max-width:42ch;}
+.swatches{display:flex; margin-top:36px; border:1px solid var(--stone);}
+.swatch{flex:1; height:64px; position:relative;}
+.swatch span{
+  position:absolute; bottom:-24px; left:0; font-size:.65rem; letter-spacing:.05em; color:var(--taupe);
+  white-space:nowrap;
+}
+
+/* ============================================================
+   PLANNING JOURNEY — accordion
+   ============================================================ */
+.accordion{border-top:1px solid var(--stone); margin-top:10px;}
+.acc-item{border-bottom:1px solid var(--stone);}
+.acc-head{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px;
+  padding:26px 4px; text-align:left;
+}
+.acc-head .idx{font-family:var(--serif); font-style:italic; color:var(--stone); font-size:1.1rem; flex:none; width:34px;}
+.acc-head h3{font-size:1.15rem; flex:1;}
+.acc-head .plus{font-size:1.3rem; color:var(--taupe); transition:transform .4s var(--ease); flex:none;}
+.acc-item.open .plus{transform:rotate(45deg);}
+.acc-body{max-height:0; overflow:hidden; transition:max-height .5s var(--ease);}
+.acc-body-inner{padding:0 4px 30px 38px; color:var(--taupe); font-size:.92rem; max-width:62ch;}
+
+/* ============================================================
+   WEDDING WEEK — horizontal journal strip
+   ============================================================ */
+.week-scroller{
+  display:flex; gap:20px; overflow-x:auto; padding:10px 4px 30px; margin:0 -4px;
+  scroll-snap-type:x proximity;
+}
+.week-scroller::-webkit-scrollbar{height:5px;}
+.week-scroller::-webkit-scrollbar-thumb{background:var(--stone);}
+.week-card{
+  flex:none; width:300px; scroll-snap-align:start; background:var(--white); border:1px solid var(--stone);
+}
+.week-card .photo{min-height:210px;}
+.week-card .week-video{position:relative; min-height:210px; overflow:hidden; background:var(--bark);}
+.week-card .week-video video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.week-card-body{padding:22px 22px 26px;}
+.week-card .day{font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--taupe);}
+.week-card h4{margin:8px 0 10px; font-size:1.15rem;}
+.week-card p{font-size:.85rem; color:var(--ink); opacity:.8;}
+
+/* ============================================================
+   PERSONAL TOUCHES — Bruno Mars easter eggs, tastefully
+   ============================================================ */
+#personal{background:var(--olive-deep); color:var(--ivory);}
+#personal h2, #personal h3{color:var(--ivory);}
+#personal .eyebrow{color:rgba(247,242,233,.7);}
+.notes-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:60px;}
+@media (max-width:820px){ .notes-grid{grid-template-columns:1fr; gap:44px;} }
+.note{border-top:1px solid rgba(247,242,233,.25); padding-top:24px;}
+.note h4{font-size:1.05rem; margin-bottom:10px; color:var(--sand);}
+.note p{font-size:.92rem; color:rgba(247,242,233,.78);}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gal-filters{display:flex; flex-wrap:wrap; gap:10px 22px; margin:34px 0 40px;}
+.gal-filters button{
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; color:var(--taupe);
+  padding-bottom:4px; border-bottom:1px solid transparent;
+}
+.gal-filters button.active{color:var(--bark); border-color:var(--bark);}
+.masonry{columns:4 220px; column-gap:12px;}
+@media (max-width:640px){ .masonry{columns:2 160px;} }
+.masonry .photo{margin-bottom:12px; break-inside:avoid; width:100%; cursor:zoom-in; transition:opacity .3s;}
+.masonry .photo:hover{opacity:.85;}
+.masonry .gal-video{margin-bottom:12px; break-inside:avoid; width:100%; overflow:hidden; background:var(--bark); position:relative; display:flex; flex-direction:column;}
+.masonry .gal-video video{width:100%; flex:1; display:block; object-fit:cover;}
+.gal-video-title{color:var(--ivory); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; padding:12px 14px;}
+.h1{min-height:260px;} .h2{min-height:170px;} .h3{min-height:320px;} .h4{min-height:200px;}
+
+#lightbox{
+  position:fixed; inset:0; background:rgba(20,17,13,.94); z-index:2000; display:none;
+  align-items:center; justify-content:center; padding:40px;
+}
+#lightbox.open{display:flex;}
+#lightbox .lb-inner{max-width:900px; width:100%; text-align:center;}
+#lightbox .photo{min-height:60vh; width:100%; background-size:cover; background-position:center;}
+.lb-img{display:none; max-width:100%; max-height:80vh; width:auto; height:auto; margin:0 auto; object-fit:contain;}
+#lightbox .lb-close{position:absolute; top:26px; right:32px; color:var(--ivory); font-size:1rem; letter-spacing:.15em; text-transform:uppercase;}
+#lightbox .lb-caption{color:var(--ivory); opacity:.7; margin-top:16px; font-size:.8rem; letter-spacing:.06em;}
+
+/* ============================================================
+   WEDDING FILM
+   ============================================================ */
+.film-frame{
+  position:relative; width:100%; aspect-ratio:16/9; background:var(--bark);
+  border:1px solid var(--stone); overflow:hidden;
+}
+.film-frame iframe{width:100%; height:100%; border:0;}
+.film-tabs{display:flex; gap:26px; margin:36px 0 30px; flex-wrap:wrap;}
+.film-tabs button{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--taupe); padding-bottom:4px; border-bottom:1px solid transparent;}
+.film-tabs button.active{color:var(--bark); border-color:var(--bark);}
+
+/* ============================================================
+   VENDORS
+   ============================================================ */
+.vendor-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; margin-top:10px;}
+.vendor-card{background:var(--white); border:1px solid var(--stone); padding:28px;}
+.vendor-mark{
+  width:44px; height:44px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-style:italic; color:var(--bark);
+}
+.vendor-card h4{margin:16px 0 4px; font-size:1.05rem;}
+.vendor-card .role{font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe);}
+.vendor-card p.desc{font-size:.85rem; color:var(--ink); opacity:.75; margin:14px 0 18px;}
+.vendor-links{display:flex; gap:16px; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--sky-deep);}
+.vendor-links a{border-bottom:1px solid transparent;}
+.vendor-links a:hover{border-color:currentColor;}
+
+/* ============================================================
+   NAV — centered laurel logo, split link groups
+   ============================================================ */
+#nav .container{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px;}
+.nav-group{display:flex; gap:18px; list-style:none;}
+.nav-group.left{justify-content:flex-end;}
+.nav-group.right{justify-content:flex-start;}
+.nav-group a{
+  font-family:var(--serif); font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--bark);
+  padding-bottom:4px; border-bottom:1px solid transparent; transition:border-color .3s;
+  white-space:nowrap;
+}
+.nav-group a:hover{border-color:currentColor;}
+.brand-mark{display:flex; flex-direction:column; align-items:center; gap:2px; line-height:1;}
+.brand-mark .letters{
+  font-family:var(--serif); font-size:1.3rem; letter-spacing:.06em; color:var(--bark);
+  display:flex; align-items:center; gap:8px;
+}
+.brand-mark .letters .bar{width:1px; height:15px; background:currentColor; opacity:.6;}
+.brand-mark svg{width:26px; height:16px; opacity:.75; margin-top:2px; color:var(--bark);}
+.brand-mark svg path, .brand-mark svg circle{stroke:currentColor;}
+@media (max-width:980px){
+  #nav .container{grid-template-columns:auto 1fr auto;}
+  .nav-group{display:none;}
+}
+
+/* ============================================================
+   HERO — ornamental editorial type treatment
+   ============================================================ */
+#hero .hero-inner{text-align:center; display:flex; flex-direction:column; align-items:center; padding-bottom:0; height:100%; justify-content:center;}
+#hero .eyebrow.hero-kicker{
+  color:var(--white); opacity:.9; font-family:var(--serif); font-style:normal; letter-spacing:.5em; font-size:.82rem;
+  text-transform:uppercase;
+}
+#hero h1.hero-title{
+  color:var(--white); font-size:clamp(2.8rem,8vw,6.4rem); font-weight:300; margin:10px 0 22px;
+  text-transform:uppercase; letter-spacing:.02em; max-width:none; line-height:1.05;
+}
+.hero-divider{display:flex; align-items:center; gap:14px; margin:6px 0 26px; opacity:.9;}
+.hero-divider .stem{width:64px; height:1px; background:rgba(255,253,249,.55);}
+.hero-divider svg{width:26px; height:18px; color:var(--white);}
+#hero p.hero-sub{color:rgba(255,253,249,.9); max-width:44ch; font-size:1.02rem; font-weight:300; text-align:center;}
+#hero .cta.pill{
+  margin-top:36px; background:var(--bark); color:var(--ivory); padding:16px 34px; border-radius:2px;
+  border-bottom:none; font-family:var(--serif); letter-spacing:.16em; transition:background .4s var(--ease);
+}
+#hero .cta.pill:hover{background:var(--olive-deep);}
+#hero .cta.pill .arrow{display:none;}
+
+/* ============================================================
+   STORY PREVIEW — collage + compact icon timeline
+   ============================================================ */
+#story-preview{position:relative; background:var(--ivory); padding:110px 0; overflow:hidden;}
+#story-preview::before, #story-preview::after{
+  content:''; position:absolute; width:340px; height:340px; border-radius:50%; opacity:.35; filter:blur(2px);
+  background:radial-gradient(circle at 30% 30%, var(--sand), transparent 70%);
+}
+#story-preview::before{top:-60px; left:-120px;}
+#story-preview::after{bottom:-100px; right:-100px; background:radial-gradient(circle at 60% 60%, var(--sand), transparent 70%);}
+.story-preview-grid{position:relative; z-index:1; display:grid; grid-template-columns:.85fr 1fr .75fr; gap:50px; align-items:center;}
+@media (max-width:980px){ .story-preview-grid{grid-template-columns:1fr; gap:50px;} }
+
+.collage{position:relative; height:440px;}
+@media (max-width:980px){ .collage{height:360px; max-width:420px; margin:0 auto;} }
+.collage .photo{position:absolute; border:6px solid var(--white); box-shadow:0 20px 50px rgba(43,38,32,.18);}
+.collage .c1{width:64%; height:60%; top:0; left:6%;}
+.collage .c2{width:56%; height:48%; bottom:0; right:0;}
+.collage .sprig{position:absolute; width:70px; opacity:.55; color:var(--taupe);}
+.collage .sprig.s1{top:-24px; left:-24px; transform:rotate(-12deg);}
+.collage .sprig.s2{bottom:-20px; right:38%; transform:rotate(160deg);}
+
+.story-copy .script{
+  font-family:var(--serif); font-style:italic; color:var(--taupe); font-size:1.15rem;
+}
+.story-copy h2{margin:10px 0 20px; font-size:clamp(1.8rem,3vw,2.5rem);}
+.story-copy p{color:var(--ink); opacity:.85; max-width:46ch; font-size:.98rem;}
+.story-copy .read-more{
+  display:inline-flex; align-items:center; gap:10px; margin-top:22px; font-size:.75rem;
+  text-transform:uppercase; letter-spacing:.14em; color:var(--bark); padding-bottom:5px; border-bottom:1px solid var(--bark);
+}
+
+.mini-timeline{position:relative; padding-left:34px;}
+.mini-timeline::before{content:''; position:absolute; left:9px; top:6px; bottom:6px; width:1px; background:var(--stone);}
+.mini-item{position:relative; margin-bottom:34px;}
+.mini-item:last-child{margin-bottom:0;}
+.mini-item .icon{
+  position:absolute; left:-34px; top:-2px; width:26px; height:26px; border-radius:50%; background:var(--ivory);
+  border:1px solid var(--stone); display:flex; align-items:center; justify-content:center; color:var(--taupe);
+}
+.mini-item .icon svg{width:13px; height:13px;}
+.mini-item h5{font-family:var(--serif); font-size:.95rem; text-transform:uppercase; letter-spacing:.08em; color:var(--bark);}
+.mini-item span{font-size:.82rem; color:var(--taupe);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:var(--bark); color:var(--ivory); padding:90px 0 40px;}
+.foot-quote{font-family:var(--serif); font-style:italic; font-size:clamp(1.4rem,3vw,2.1rem); max-width:20ch; line-height:1.3;}
+.foot-grid{display:grid; grid-template-columns:2fr 1fr; gap:40px; margin-top:70px;}
+@media (max-width:760px){ .foot-grid{grid-template-columns:1fr; gap:36px;} }
+.foot-grid h5{font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(247,242,233,.55); margin-bottom:16px;}
+.foot-grid a, .foot-grid span{display:block; font-size:.88rem; color:rgba(247,242,233,.85); margin-bottom:10px;}
+.foot-bottom{
+  margin-top:70px; padding-top:26px; border-top:1px solid rgba(247,242,233,.15);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:.72rem; color:rgba(247,242,233,.5);
+}
+
+/* ============================================================
+   FLOATING UI — back to top, share
+   ============================================================ */
+#backtotop{
+  position:fixed; bottom:28px; right:28px; z-index:800; width:46px; height:46px; border-radius:50%;
+  background:var(--bark); color:var(--ivory); display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:translateY(10px); pointer-events:none; transition:opacity .4s, transform .4s;
+  font-size:1.1rem;
+}
+#backtotop.show{opacity:1; transform:translateY(0); pointer-events:auto;}
+
+/* Search */
+.search-wrap{position:relative; margin-top:6px; max-width:360px;}
+.search-wrap input{
+  width:100%; background:transparent; border:none; border-bottom:1px solid var(--stone);
+  padding:10px 2px; font-family:var(--sans); font-size:.9rem; color:var(--bark);
+}
+.search-wrap input:focus{border-color:var(--bark);}
+.search-wrap input::placeholder{color:var(--stone);}
+
+.reading-time{font-size:.68rem; letter-spacing:.08em; color:var(--stone); text-transform:uppercase;}
+
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="mark">Our Batanes Wedding</div>
+  <div class="line"></div>
+</div>
+
+<!-- HORIZON / SCROLL PROGRESS -->
+<div class="horizon-progress">
+  <svg viewBox="0 0 1000 3" preserveAspectRatio="none">
+    <path id="horizonPath" d="M0,1.5 L1000,1.5" stroke-dasharray="2000" stroke-dashoffset="2000"/>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <ul class="nav-group left">
+      <li><a href="#story-preview">Our Story</a></li>
+      <li><a href="#why-batanes">Why Batanes</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#planning">Planning</a></li>
+      <li><a href="#week">Wedding Week</a></li>
+    </ul>
+
+    <a href="#hero" class="brand-mark" aria-label="C and L home">
+      <span class="letters">C<span class="bar"></span>L</span>
+      <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4 C20 10 14 12 8 12 C14 12 20 14 20 20 C20 14 26 12 32 12 C26 12 20 10 20 4Z" stroke-width="1"/>
+      </svg>
+    </a>
+
+    <ul class="nav-group right">
+      <li><a href="#personal">Personal Touches</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#film">Film</a></li>
+      <li><a href="#vendors">Vendors</a></li>
+      <li><a href="#follow">Follow</a></li>
+    </ul>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#story-preview">Our Story</a></li>
+      <li><a href="#why-batanes">Why Batanes</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#planning">Planning</a></li>
+      <li><a href="#week">Wedding Week</a></li>
+      <li><a href="#personal">Personal Touches</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#film">Wedding Film</a></li>
+      <li><a href="#vendors">Vendors</a></li>
+      <li><a href="#follow">Follow</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner container">
+    <p class="eyebrow hero-kicker reveal in">Our</p>
+    <h1 class="hero-title reveal in reveal-delay-1">Batanes Wedding</h1>
+    <div class="hero-divider reveal in reveal-delay-2">
+      <span class="stem"></span>
+      <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 4 C20 10 14 12 8 12 C14 12 20 14 20 20 C20 14 26 12 32 12 C26 12 20 10 20 4Z" stroke="currentColor" stroke-width="1"/></svg>
+      <span class="stem"></span>
+    </div>
+    <p class="hero-sub reveal in reveal-delay-2">A story of faith, intention, adventure, and the most beautiful place we could ever say "I do."</p>
+    <a href="#story-preview" class="cta pill reveal in reveal-delay-3">Start the Journey</a>
+  </div>
+  <div class="scroll-cue">Scroll to begin</div>
+</header>
+
+<!-- OUR STORY — PREVIEW / COLLAGE -->
+<section id="story-preview">
+  <div class="container">
+    <div class="story-preview-grid">
+
+      <div class="collage reveal">
+        <svg class="sprig s1" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1">
+          <path d="M30 5 L30 95"/><path d="M30 20 C20 20 14 26 12 34"/><path d="M30 34 C40 34 46 28 48 20"/><path d="M30 50 C20 50 14 56 12 64"/><path d="M30 64 C40 64 46 58 48 50"/>
+        </svg>
+        <div class="photo c1 no-caption" style="background-image:url('https://github.com/chrisludovice/wed/blob/main/_42A8960.JPEG?raw=true'); background-size:cover; background-position:center;"></div>
+        <div class="photo c2 no-caption" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/refs/heads/main/DJL29068.JPEG'); background-size:cover; background-position:center;"></div>
+        <svg class="sprig s2" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1">
+          <path d="M30 5 L30 95"/><path d="M30 20 C20 20 14 26 12 34"/><path d="M30 34 C40 34 46 28 48 20"/>
+        </svg>
+      </div>
+
+      <div class="story-copy reveal reveal-delay-1">
+        <p class="script">our story</p>
+        <h2>How it all began</h2>
+        <p>From the moment we met because of our shared love for Bruno Mars, we knew our story was something special. We were both huge fans, and honestly, he's lowkey responsible for this wedding. He's basically one of our unofficial Ninongs, without him knowing it lol. What started with a shared love for music grew into years of laughter, love, and growing together. And now, we get to promise forever in Batanes, a place that makes this moment even more special.</p>
+        <a href="#story" class="read-more">View Proposal <span>→</span></a>
+      </div>
+
+      <div class="mini-timeline reveal reveal-delay-2">
+        <div class="mini-item">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 L12 21 M12 8 C7 8 4 11 3 15 M12 14 C17 14 20 11 21 7"/></svg></span>
+          <h5>We Met</h5><span>Metro Manila, 2017</span>
+        </div>
+        <div class="mini-item">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 20 C6 15 3 11 3 7.5 C3 5 5 3 7.5 3 C9.5 3 11 4.2 12 6 C13 4.2 14.5 3 16.5 3 C19 3 21 5 21 7.5 C21 11 18 15 12 20Z"/></svg></span>
+          <h5>First Date</h5><span>Hulugan Falls — Feb 2018</span>
+        </div>
+        <div class="mini-item">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="15" r="6"/><path d="M9.5 9 L12 3 L14.5 9"/></svg></span>
+          <h5>The Proposal</h5><span>Sabtang, Batanes — Aug 2024</span>
+        </div>
+        <div class="mini-item">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 4 C9 8 6 9 6 13 C6 17 9 20 12 20 C15 20 18 17 18 13 C18 9 15 8 12 4Z"/></svg></span>
+          <h5>The Wedding</h5><span>Basco, Batanes — May, 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="story" class="tone-ivory">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">01 — The Proposal</p>
+      <h2>The Proposal</h2>
+    </div>
+
+    <div class="story-two-col">
+      <div class="reveal">
+        <p style="font-size:1.05rem; color:var(--ink); opacity:.88;">We got engaged in Batanes, specifically at Chamantad-Tiñan Viewpoint in Sabtang in 2024. It was a quiet and intimate moment, with only the breathtaking mountains, endless sea, and blue sky as our witnesses. In a place so beautiful and peaceful, we said yes to forever and began the next chapter of our story.</p>
+      </div>
+      <div class="story-video reveal reveal-delay-1">
+        <video src="https://raw.githubusercontent.com/chrisludovice/wed/main/copy_1DAB3D0A-1635-4990-9BF0-2AB28266BE55.MOV" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" muted playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BATANES -->
+<section id="why-batanes" class="tone-sand">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">02 — Why Batanes</p>
+      <h2>The island that decided everything</h2>
+      <p class="lede">Batanes doesn't ask to be noticed, it simply is. Rolling hills the color of old brass, stone houses built to outlast typhoons, a silence you can hear. We didn't choose it to impress anyone. We chose it because it already felt like us.</p>
+    </div>
+  </div>
+
+  <div class="feature-grid reveal">
+    <div class="feature"><p class="num">01</p><h4>Landscape</h4><p>Sweeping views of the rolling hills of Marlboro Country, the dramatic cliffs of Vayang, stone houses nestled beneath open skies, and the endless coastline where the wind meets the sea.</p></div>
+    <div class="feature"><p class="num">02</p><h4>Local Culture</h4><p>The quiet warmth of the Ivatan people, centuries-old stone-and-cogon houses standing resilient against the elements, and a slower rhythm of life that gently reminded us to be fully present in every moment.</p></div>
+    <div class="feature"><p class="num">03</p><h4>Peaceful Atmosphere</h4><p>No traffic, no city noise, only the steady rhythm of the wind, waves meeting the limestone coast, and the kind of silence that allows you to hear your own thoughts.</p></div>
+    <div class="feature"><p class="num">04</p><h4>Rolling Hills</h4><p>Standing atop these windswept hills, we looked at each other and quietly knew: this was where we wanted to begin the rest of our lives together.</p></div>
+    <div class="feature"><p class="num">05</p><h4>Weather &amp; Wind</h4><p>Batanes is known for its powerful winds and ever-changing weather. Rather than resisting its unpredictability, we learned to embrace it, trusting that every breeze and shifting cloud would become part of our story.</p></div>
+    <div class="feature"><p class="num">06</p><h4>Churches</h4><p>Centuries-old stone churches, weathered by time and the island's relentless winds, provided more than a venue. They lent our ceremony a quiet sense of reverence, history, and enduring faith.</p></div>
+  </div>
+
+  <div class="container">
+    <div class="map-wrap reveal">
+      <p class="eyebrow" style="margin-bottom:18px;">A map of what mattered to us</p>
+      <img class="map-svg" src="https://raw.githubusercontent.com/chrisludovice/wed/refs/heads/main/map.png" alt="Illustrated watercolor map of Batanes showing the hotel, Batanes Little Cafe, Tukon Chapel (wedding ceremony), Vayang Rolling Hills (post-wedding photos), and Naidi Lighthouse (reception)" style="border-radius:2px;" draggable="false" oncontextmenu="return false">
+      <div class="map-legend">
+        <div class="pin"><span class="dot"></span>Hotel &amp; Batanes Little Cafe — where we stayed and had our quiet mornings</div>
+        <div class="pin"><span class="dot"></span>Wedding Ceremony — Tukon Chapel</div>
+        <div class="pin"><span class="dot"></span>Post-Wedding Photos — Vayang Rolling Hills</div>
+        <div class="pin"><span class="dot"></span>Reception — Naidi Lighthouse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision" class="tone-ivory">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">03 — Wedding Vision</p>
+      <h2>Earth tones, and everything we left out</h2>
+      <p class="lede">Our mood board wasn't built around extravagance, it was built around restraint. Every fabric, every color, and every bloom was selected to complement the landscape rather than compete with it. We intentionally stayed away from satin sheens, glittering details, and glossy materials, embracing soft linens, matte textures, and warm earth tones that felt as though they belonged in Batanes.</p>
+    </div>
+
+    <div class="vision-accents reveal">
+      <div class="vision-accent">
+        <p class="eyebrow" style="margin-bottom:10px;">Rustic, at heart</p>
+        <p>Raw wood, woven textures, and unpolished stone ran through every styling choice, nothing shined that didn't need to. It was less about a "look" and more about letting things feel handmade, lived-in, and warm.</p>
+      </div>
+      <div class="vision-accent">
+        <p class="eyebrow" style="margin-bottom:10px;">A quiet Bruno Mars thread</p>
+        <p>Woven gently beneath the earth tones was a nod to the music that means the most to us. Our welcome banner drew its spirit from Bruno Mars' first solo album, <em>Doo-Wops &amp; Hooligans</em>, its warmth, its soul, its era, reimagined in our own words rather than quoting the songs themselves. It never took over the aesthetic, just a few personal touches for anyone who knows to look. More on that later.</p>
+      </div>
+    </div>
+
+    <div class="swatches reveal">
+      <div class="swatch" style="background:#F7F2E9;"><span>Ivory</span></div>
+      <div class="swatch" style="background:#EAE0CC;"><span>Sand</span></div>
+      <div class="swatch" style="background:#B9AFA0;"><span>Stone</span></div>
+      <div class="swatch" style="background:#8C7B65;"><span>Taupe</span></div>
+      <div class="swatch" style="background:#6E7059;"><span>Olive</span></div>
+      <div class="swatch" style="background:#4A3F32;"><span>Bark</span></div>
+      <div class="swatch" style="background:#7D93A0;"><span>Batanes Sky</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANNING JOURNEY -->
+<section id="planning" class="tone-sand">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">04 — Planning Journey</p>
+      <h2>Everything it took to get here</h2>
+      <p class="lede">A destination wedding on an island with a few thousand residents and its own weather system is not simple. Here's the long version, the version we wish someone had shown us before we started.</p>
+    </div>
+
+    <div class="accordion reveal">
+      <div class="acc-item"><button class="acc-head"><span class="idx">01</span><h3>Choosing Batanes</h3><span class="plus">+</span></button>
+        <div class="acc-body"><div class="acc-body-inner"><p>Some venues are chosen because they're beautiful. We chose Batanes because it felt like us. During our engagement in Sabtang, surrounded by the island's quiet grandeur, we realized we weren't simply visiting a place, we were discovering where our next chapter would begin. For over five years, we had dreamed of exchanging vows here, drawn to its simplicity, its serenity, and the way it lets nature speak for itself. Our vision was never about an extravagant celebration. We wanted a wedding that felt honest, intentional, and quietly beautiful. In the end, Batanes wasn't just the backdrop to our wedding, it became part of our story.</p></div></div>
+      </div>
+      <div class="acc-item"><button class="acc-head"><span class="idx">02</span><h3>Finding Suppliers</h3><span class="plus">+</span></button>
+        <div class="acc-body"><div class="acc-body-inner"><p>We knew from the start that we wanted to work with local Ivatan suppliers. No one understands Batanes better than the people who call it home. Their talent, creativity, and genuine hospitality made every part of our wedding feel authentic. We entrusted everything to Batanes Weddings &amp; Events by IBS as our all-in-one coordinator, and they brought together an amazing team that helped turn our vision into reality.</p></div></div>
+      </div>
+      <div class="acc-item"><button class="acc-head"><span class="idx">03</span><h3>Budget, Flights &amp; Accommodations</h3><span class="plus">+</span></button>
+        <div class="acc-body"><div class="acc-body-inner"><p>One of the biggest parts of planning a Batanes wedding is getting the timing right. We first confirmed our wedding date with our coordinator before booking our flights. Since flights to Batanes are limited and can be expensive, planning ahead helped us save money and avoid unnecessary stress. Currently, Philippine Airlines is the only airline offering direct flights to Batanes from Clark, so securing your tickets early is important. If you are traveling with more than nine guests, it is also best to request a group booking to help manage the arrangements smoothly.</p><p style="margin-top:14px;">It is also important to set your budget based on the size of your wedding. Most packages are priced according to the number of guests, whether you're planning an elopement, a 20–30 guest celebration, or a larger wedding. We chose the 30-guest package, which perfectly matched the intimate wedding we envisioned.</p></div></div>
+      </div>
+      <div class="acc-item"><button class="acc-head"><span class="idx">04</span><h3>Church &amp; Venue</h3><span class="plus">+</span></button>
+        <div class="acc-body"><div class="acc-body-inner"><p>When we first visited Batanes, we instantly fell in love with Tukon Chapel. Its stone-house architecture, peaceful atmosphere, and breathtaking views felt so uniquely Batanes. We couldn't picture ourselves getting married anywhere else. For the reception, the choice was just as easy, Naidi Lighthouse. We had always imagined celebrating on a cliff overlooking the sea, with the lighthouse standing nearby, the hills in the distance, and a beautiful Batanes sunset as our backdrop. It was everything we had dreamed of in one place.</p></div></div>
+      </div>
+      <div class="acc-item"><button class="acc-head"><span class="idx">05</span><h3>Weather Preparation</h3><span class="plus">+</span></button>
+        <div class="acc-body"><div class="acc-body-inner"><p>One thing we learned is that you can never fully predict the weather in Batanes. We scheduled our wedding during summer to avoid the rainy season, but we also knew that Batanes weather can be unpredictable. Since our reception was outdoors, we prepared an indoor venue as a backup in case the weather didn't cooperate. We hoped for the best but planned for the unexpected. We also realized how important it is to have buffer days before the wedding, especially for destination weddings, to allow room for unexpected weather changes, travel delays, or emergencies.</p></div></div>
+      </div>
+      <div class="acc-item"><button class="acc-head"><span class="idx">06</span><h3>Legal Documents</h3><span class="plus">+</span></button>
+        <div class="acc-body"><div class="acc-body-inner"><p>For a destination wedding, it's important to prepare all legal and church documents early. Always coordinate with your wedding coordinator and ask for the complete requirements before the wedding day. Since the location is far, we made sure everything was arranged ahead of time and considered any possible risks to avoid last-minute problems.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEDDING WEEK -->
+<section id="week" class="tone-ivory">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">05 — Wedding Week</p>
+      <h2>Five days, one island, a lifetime of memory</h2>
+      <p class="lede">A day-by-day journal of the week itself, bookended by a family tour of Batanes before and after the wedding day, scroll sideways to move through it, the way the week itself seemed to move: quickly, and all at once.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="week-scroller reveal">
+      <div class="week-card"><div class="photo no-caption" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DSCF2115.JPG'); background-size:cover; background-position:center;"></div><div class="week-card-body"><p class="day">Day One</p><h4>Arrival &amp; Family Tour</h4><p>After landing in Batanes, we started with an initial tour of the island. Since our wedding was also an adventure, we wanted our family to experience and appreciate the beauty of Batanes before the big day. Seeing everyone excited, amazed, and in awe of the breathtaking landscapes made the experience even more special.</p></div></div>
+      <div class="week-card"><div class="photo no-caption" style="background-image:url('https://github.com/chrisludovice/wed/blob/main/IMG_9611%20(1).jpeg?raw=true'); background-size:cover; background-position:center;"></div><div class="week-card-body"><p class="day">Day Two</p><h4>Welcome Dinner</h4><p>Our first dinner after arriving in Batanes was at Little Cafe, conveniently located just beside our hotel. It is a well-loved spot where visitors gather to enjoy good food, beautiful views, and the breathtaking sunset overlooking the ocean. It was the perfect way to begin our wedding week, sharing our first meal together as a family and soaking in the beauty of the island that would soon witness our special day.</p></div></div>
+      <div class="week-card"><div class="photo no-caption" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/refs/heads/main/_42A8300.jpg'); background-size:cover; background-position:center;"></div><div class="week-card-body"><p class="day">Day Three</p><h4>Wedding Day</h4><p>It was the best day of our lives. A dream years in the making, finally happening in the place where we always imagined saying our vows. Batanes was more than just a destination for us; it was the place we always envisioned for this moment. We felt truly blessed that God gave us the most beautiful day, not only on our wedding day but throughout our entire stay. Every view, every moment, and every detail felt like a gift we will always remember.</p></div></div>
+      <div class="week-card"><div class="photo no-caption" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJI_20260527174940_0127_D%202.JPEG'); background-size:cover; background-position:center;"></div><div class="week-card-body"><p class="day">Day Three, Postnup</p><h4>Golden Hour Portraits</h4><p>Our postnup session took place at Vayang Rolling Hills during golden hour, when the soft light beautifully covered the landscape. Surrounded by the rolling hills and the breathtaking views of Batanes, it was the perfect setting to capture quiet moments together after saying our vows.</p></div></div>
+      <div class="week-card"><div class="photo no-caption" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJI_20260527182459_0160_D%202.JPEG'); background-size:cover; background-position:center;"></div><div class="week-card-body"><p class="day">Day Three, Sunset</p><h4>Reception</h4><p>Our reception was held at Naidi Lighthouse, a place that perfectly captured the beauty and simplicity we envisioned for our celebration. Before the formal program, we took the time to climb the lighthouse and watch the sunset with our family and guests. It was a meaningful moment of togetherness before we gathered for an intimate evening filled with heartfelt conversations, laughter, and memories with the people who shared this special day with us.</p></div></div>
+      <div class="week-card"><div class="week-video"><video src="https://raw.githubusercontent.com/chrisludovice/wed/main/risk%20it%20all.MOV" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" muted playsinline preload="metadata"></video></div><div class="week-card-body"><p class="day">Day Three, Evening</p><h4>Night of Celebration</h4><p>We kept our program simple and short because we wanted more time for natural conversations and casual interactions with our family and guests rather than a celebration that felt too structured. One of the most memorable and unique moments of the night was performing the Fundango Ivatan, a traditional Ivatan folk dance that celebrates joy, unity, and love, making it the perfect way to honor the culture of Batanes and our wedding celebration.</p></div></div>
+      <div class="week-card"><div class="week-video"><video src="https://raw.githubusercontent.com/chrisludovice/wed/main/vayang%20sunset.MOV" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" muted playsinline preload="metadata"></video></div><div class="week-card-body"><p class="day">Day Four</p><h4>Family Tour &amp; Farewell</h4><p>The day after our wedding, we spent our final moments in Batanes exploring Sabtang and taking in more of the island's beauty with our family. We ended our journey by watching the sunset at Vayang Rolling Hills, a quiet and beautiful farewell to a place that gave us memories we will carry forever.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL TOUCHES — Bruno Mars, tastefully -->
+<section id="personal">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">06 — Personal Touches</p>
+      <h2>The details that were just for us</h2>
+      <p class="lede">Not everything on this island belonged to Batanes alone. A few details belonged only to us, quiet references that most guests walked past, and that we hope you'll enjoy finding.</p>
+    </div>
+
+    <div class="notes-grid reveal">
+      <div class="note">
+        <h4>The welcome banner</h4>
+        <p>Our welcome banner was a small nod to the artist who brought us together: Bruno Mars. Inspired by the fun, warmth, and playful energy of his first solo album, <em>Doo-Wops &amp; Hooligans</em>, we wanted it to have a little bit of character and showmanship while still blending with our earth-toned wedding palette. It was a simple detail that carried a meaningful piece of our story into the celebration.</p>
+      </div>
+      <div class="note">
+        <h4>The photo backdrop wall</h4>
+        <p>Instead of having a traditional photo booth, we chose to let Batanes create the perfect backdrop for our guests. The cliffside by the sea, with the lighthouse standing beautifully in the distance, became the natural setting for their photos. We wanted the experience to feel authentic to the place, allowing everyone to capture memories with the breathtaking beauty of Batanes as the background.</p>
+      </div>
+      <div class="note">
+        <h4>The song behind the film</h4>
+        <p>We wanted our wedding film to feel like a cinematic documentary, capturing the raw, honest, and unscripted moments of our day. Instead of having an SDE, we chose to create something closer to a music video, guided by a storyboard we prepared for our videography team. The song we chose was "God Was Showing Off" by Bruno Mars from <em>The Romantic</em> album because it perfectly described how we felt about the day. It felt like God truly showed off by giving us the best day of our lives, surrounded by the beauty of Batanes and the people we love.</p>
+      </div>
+      <div class="note">
+        <h4>What guests noticed (and didn't)</h4>
+        <p>Our wedding was not just an event, but also an adventure. It was a long and tiring week, but seeing our family and friends experience the beauty of Batanes made it all worth it. Many were amazed by the breathtaking views, but the biggest surprise came during the reception when they saw the venue and the fireworks that closed the night. It was a celebration filled with beautiful moments, shared memories, and a place that left everyone in awe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="tone-ivory">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">07 — Wedding Gallery</p>
+      <h2>The whole story, frame by frame</h2>
+      <p class="lede">Filter by moment, click to expand. This gallery is built to hold hundreds of images, these placeholders mark where yours will live.</p>
+    </div>
+
+    <div class="gal-filters reveal" id="galFilters">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="prep">Preparation</button>
+      <button data-filter="ceremony">Ceremony</button>
+      <button data-filter="portraits">Portraits</button>
+      <button data-filter="family">Family</button>
+      <button data-filter="reception">Reception</button>
+      <button data-filter="golden">Golden Hour</button>
+      <button data-filter="guests">Guests</button>
+      <button data-filter="detailsCat">Details</button>
+      <button data-filter="landscapes">Landscapes</button>
+    </div>
+
+    <div class="masonry reveal" id="masonryGrid">
+      <div class="photo h1" data-cat="landscapes" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJI_20260527174742_0111_D.jpeg'); background-size:cover; background-position:center;"><span>Landscapes — hills at postnup</span></div>
+      <div class="photo h2" data-cat="prep" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/_42A6128.jpeg'); background-size:cover; background-position:center;"><span>Preparation — quiet moments</span></div>
+      <div class="photo h3" data-cat="ceremony" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/_42A7912.jpeg'); background-size:cover; background-position:center;"><span>Ceremony — the vows</span></div>
+      <div class="photo h3" data-cat="portraits" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJL28043.jpg'); background-size:cover; background-position:center;"><span>Portraits — the two of us</span></div>
+      <div class="photo h1" data-cat="detailsCat" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/_42A8462.jpeg'); background-size:cover; background-position:center;"><span>Ivatan — unique souvenirs</span></div>
+      <div class="photo h2" data-cat="family" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJL28242%202.jpeg'); background-size:cover; background-position:center;"><span>Family — gathered together</span></div>
+      <div class="photo h3" data-cat="golden" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJI_20260527182558_0164_D.jpeg'); background-size:cover; background-position:center;"><span>Golden Hour — chasing the light</span></div>
+      <div class="photo h2" data-cat="reception" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/_42A9244.JPEG'); background-size:cover; background-position:center;"><span>Reception — first dance</span></div>
+      <div class="gal-video h4" data-cat="guests">
+        <video src="https://raw.githubusercontent.com/chrisludovice/wed/main/copy_AFF491F5-D1B3-4374-A9CE-C72B065D6F29.mov" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" muted playsinline preload="metadata"></video>
+        <p class="gal-video-title">After Party</p>
+      </div>
+      <div class="photo h2" data-cat="detailsCat" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/_42A8483.jpeg'); background-size:cover; background-position:center;"><span>Details — table styling</span></div>
+      <div class="photo h3" data-cat="landscapes" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJI_20260527180303_0146_D.jpeg'); background-size:cover; background-position:center;"><span>Landscapes — the hills</span></div>
+      <div class="photo h2" data-cat="ceremony" style="background-image:url('https://raw.githubusercontent.com/chrisludovice/wed/main/DJI_20260527163417_0057_D.jpeg'); background-size:cover; background-position:center;"><span>Ceremony — the stone church</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox">
+  <button class="lb-close" id="lbClose">Close ✕</button>
+  <div class="lb-inner">
+    <div class="photo p4" id="lbPhoto"></div>
+    <img id="lbImg" class="lb-img" alt="">
+    <p class="lb-caption" id="lbCaption">Photo caption</p>
+  </div>
+</div>
+
+<!-- WEDDING FILM -->
+<section id="film" class="tone-bark">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">08 — Wedding Film</p>
+      <h2>Watch our day, told in motion</h2>
+      <p class="lede" style="color:rgba(247,242,233,.75);">Cut to the feeling of gratitude and wonder, a day that, in hindsight, felt like more than we planned for.</p>
+    </div>
+
+    <div class="film-frame reveal">
+      <iframe id="filmEmbed" width="560" height="315" src="https://www.youtube.com/embed/6Iq5lzLmnrc?si=kwg2uUgANZT1ayh2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- VENDORS -->
+<section id="vendors" class="tone-ivory">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">09 — Vendors</p>
+      <h2>The people who made it real</h2>
+      <p class="lede">A wedding this considered doesn't happen alone. With deep thanks to the team who understood the vision from the very first call.</p>
+    </div>
+    <div class="vendor-grid reveal" id="vendorGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="foot-quote reveal">"Less decoration, more intention, the island was always the point."</p>
+    <div class="foot-grid reveal">
+      <div id="follow">
+        <h5>Follow Along</h5>
+        <a href="https://instagram.com/ludovisuals__c" target="_blank" rel="noopener">Instagram — @ludovisuals__c</a>
+        <a href="mailto:ludovisuals@gmail.com">Email us — ludovisuals@gmail.com</a>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="#gallery">Gallery</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 C &amp; C. All rights reserved.</span>
+      <span>Made with love in Batanes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backtotop" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+
+  // ---------- Media protection (deterrent only, not real DRM) ----------
+  // Blocks right-click "Save image/video as" and drag-to-save on photos
+  // and videos, while leaving normal right-click on text/inputs alone.
+  document.addEventListener('contextmenu', function(e){
+    if(e.target.closest('img, video, .photo, .week-video')){
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('dragstart', function(e){
+    if(e.target.closest('img, video, .photo, .week-video')){
+      e.preventDefault();
+    }
+  });
+
+  // ---------- Loader ----------
+  window.addEventListener('load', function(){
+    setTimeout(function(){ document.getElementById('loader').classList.add('hide'); }, 500);
+  });
+
+  // ---------- Scroll progress / horizon line ----------
+  var path = document.getElementById('horizonPath');
+  var pathLength = 2000;
+  function onScroll(){
+    var doc = document.documentElement;
+    var scrollTop = doc.scrollTop || document.body.scrollTop;
+    var scrollHeight = (doc.scrollHeight - doc.clientHeight) || 1;
+    var pct = Math.min(scrollTop / scrollHeight, 1);
+    path.style.strokeDashoffset = pathLength - (pathLength * pct);
+
+    var nav = document.getElementById('nav');
+    if(scrollTop > 60){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+
+    var btt = document.getElementById('backtotop');
+    if(scrollTop > 700){ btt.classList.add('show'); } else { btt.classList.remove('show'); }
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  document.getElementById('backtotop').addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // ---------- Mobile nav ----------
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){ navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+  });
+
+  // ---------- Reveal on scroll ----------
+  var revealEls = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('in'); }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // ---------- Accordion (Planning Journey) ----------
+  document.querySelectorAll('.acc-item').forEach(function(item){
+    var head = item.querySelector('.acc-head');
+    var body = item.querySelector('.acc-body');
+    head.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(function(o){
+        o.classList.remove('open'); o.querySelector('.acc-body').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ---------- Gallery filter ----------
+  var filterBtns = document.querySelectorAll('#galFilters button');
+  var galItems = document.querySelectorAll('#masonryGrid .photo, #masonryGrid .gal-video');
+  var photos = document.querySelectorAll('#masonryGrid .photo');
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      galItems.forEach(function(p){
+        p.style.display = (f === 'all' || p.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
+
+  // ---------- Lightbox ----------
+  var lightbox = document.getElementById('lightbox');
+  var lbPhoto = document.getElementById('lbPhoto');
+  var lbImg = document.getElementById('lbImg');
+  var lbCaption = document.getElementById('lbCaption');
+  photos.forEach(function(p){
+    p.addEventListener('click', function(){
+      var bg = p.style.backgroundImage;
+      if(bg){
+        var url = bg.slice(bg.indexOf('(')+1, bg.lastIndexOf(')')).replace(/["']/g,'');
+        lbImg.src = url;
+        lbImg.style.display = 'block';
+        lbPhoto.style.display = 'none';
+      } else {
+        var toneClass = Array.from(p.classList).find(function(c){return /^p\d$/.test(c);});
+        lbPhoto.className = 'photo' + (toneClass ? ' ' + toneClass : '');
+        lbImg.style.display = 'none';
+        lbPhoto.style.display = 'block';
+      }
+      lbCaption.textContent = p.querySelector('span') ? p.querySelector('span').textContent : '';
+      lightbox.classList.add('open');
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click', function(){ lightbox.classList.remove('open'); });
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox){ lightbox.classList.remove('open'); } });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ lightbox.classList.remove('open'); } });
+
+  // ---------- Wedding film (configurable URL; add tabs back later if more edits are cut) ----------
+  // ---------- Wedding film ----------
+  // Film is embedded directly in the markup above (YouTube iframe) — no JS wiring needed.
+
+  // ---------- Vendors (data-driven, easy to extend) ----------
+  var VENDORS = [
+    {role:'Coordinator', name:'Batanes Weddings & Events by IBS', desc:'Our all-in-one wedding coordinator, who brought together a team of local Ivatan suppliers to help turn our vision into reality.', facebook:'https://www.facebook.com/batanesweddings/'},
+    {role:'Photography', name:'Dijital Batanes', desc:'Leading wedding photography teams in Batanes, known for capturing beautiful moments against the island\'s breathtaking landscapes.', facebook:'https://www.facebook.com/Dijitalbatanesphotographyservices/'},
+    {role:'Videography', name:'Stone House Films and Photography', desc:'Specializes in cinematic and documentary-style wedding films, capturing authentic emotions and unforgettable moments as they naturally unfold.', facebook:'https://www.facebook.com/p/Stone-House-Films-and-Photography-100083968245991/'},
+    {role:'Hair & Makeup', name:'Batanes Hair and Makeup by Shimlee', desc:'Trusted hair and makeup artist in Batanes, creating timeless looks that enhance each bride\'s natural beauty.', facebook:'https://www.facebook.com/batanesmakeupartist/'}
+  ];
+  var vg = document.getElementById('vendorGrid');
+  VENDORS.forEach(function(v){
+    var el = document.createElement('div');
+    el.className = 'vendor-card';
+    el.innerHTML =
+      '<div class="vendor-mark">'+ v.name.replace('[','').charAt(0).toUpperCase() +'</div>'+
+      '<p class="role">'+ v.role +'</p>'+
+      '<h4>'+ v.name +'</h4>'+
+      '<p class="desc">'+ v.desc +'</p>'+
+      '<div class="vendor-links"><a href="'+ v.facebook +'" target="_blank" rel="noopener">Facebook</a></div>';
+    vg.appendChild(el);
+  });
+
+})();
+</script>
+</body>
+</html>
