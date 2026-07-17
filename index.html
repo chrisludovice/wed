@@ -373,6 +373,21 @@ section{position:relative; padding:120px 0;}
 .film-tabs button.active{color:var(--bark); border-color:var(--bark);}
 
 /* ============================================================
+   WHAT WE'LL REMEMBER — His / Hers, divided columns
+   ============================================================ */
+.memories-cols{
+  display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  border-top:1px solid var(--stone); margin-top:46px; padding-top:50px;
+}
+@media (max-width:860px){ .memories-cols{grid-template-columns:1fr; gap:0;} }
+.memories-col:first-child{border-right:1px solid var(--stone); padding-right:60px;}
+@media (max-width:860px){
+  .memories-col:first-child{border-right:none; padding-right:0;}
+  .memories-col:last-child{border-top:1px solid var(--stone); margin-top:40px; padding-top:40px;}
+}
+.memories-label{font-family:var(--serif); font-style:italic; color:var(--taupe); font-size:1.15rem; margin-bottom:16px;}
+
+/* ============================================================
    VENDORS
    ============================================================ */
 .vendor-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; margin-top:10px;}
@@ -556,6 +571,7 @@ footer{background:var(--bark); color:var(--ivory); padding:90px 0 40px;}
       <li><a href="#personal">Personal Touches</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#film">Film</a></li>
+      <li><a href="#memories">What We'll Remember</a></li>
       <li><a href="#vendors">Vendors</a></li>
       <li><a href="#follow">Follow</a></li>
     </ul>
@@ -570,6 +586,7 @@ footer{background:var(--bark); color:var(--ivory); padding:90px 0 40px;}
       <li><a href="#personal">Personal Touches</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#film">Wedding Film</a></li>
+      <li><a href="#memories">What We'll Remember</a></li>
       <li><a href="#vendors">Vendors</a></li>
       <li><a href="#follow">Follow</a></li>
     </ul>
@@ -878,20 +895,21 @@ footer{background:var(--bark); color:var(--ivory); padding:90px 0 40px;}
 </section>
 
 <!-- WHAT WE'LL REMEMBER -->
-<section id="memories" class="tone-sand">
+<section id="memories" class="tone-white">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">In Their Own Words</p>
-      <h2>What We'll Remember</h2>
+      <p class="eyebrow">09 — What We'll Remember</p>
+      <h2>Two voices, one wedding</h2>
+      <p class="lede">Not a summary of the day, but the parts of it we know we'll carry with us.</p>
     </div>
 
-    <div class="story-two-col">
-      <div class="reveal">
-        <p class="eyebrow" style="margin-bottom:14px;">His</p>
+    <div class="memories-cols reveal">
+      <div class="memories-col">
+        <p class="memories-label">His</p>
         <p style="font-size:1.05rem; color:var(--ink); opacity:.88;">&ldquo;I still can&rsquo;t quite believe we got to have all of this. Standing on that hillside, watching her walk toward me with the wind pulling at her veil and the whole island stretched out behind her, that&rsquo;s the moment I&rsquo;ll replay for the rest of my life. Batanes didn&rsquo;t just host our wedding; it became part of the story I get to tell about the day I married my best friend.&rdquo;</p>
       </div>
-      <div class="reveal reveal-delay-1">
-        <p class="eyebrow" style="margin-bottom:14px;">Hers</p>
+      <div class="memories-col">
+        <p class="memories-label">Hers</p>
         <p style="font-size:1.05rem; color:var(--ink); opacity:.88;">&ldquo;I used to think I had it all pictured in my head, but nothing prepared me for actually being there. Walking toward him with the hills and the sea behind me, hearing him try (and fail) to hold back tears, is a moment I don&rsquo;t think I&rsquo;ll ever fully find the words for. And later, dancing at the lighthouse under that sky, surrounded by everyone we love most, I remember just wanting to pause time. Batanes gave us the wedding we always dreamed of, and somehow, even more than that.&rdquo;</p>
       </div>
     </div>
@@ -902,7 +920,7 @@ footer{background:var(--bark); color:var(--ivory); padding:90px 0 40px;}
 <section id="vendors" class="tone-ivory">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">09 — Vendors</p>
+      <p class="eyebrow">10 — Vendors</p>
       <h2>The people who made it real</h2>
       <p class="lede">A wedding this considered doesn't happen alone. With deep thanks to the team who understood the vision from the very first call.</p>
     </div>
